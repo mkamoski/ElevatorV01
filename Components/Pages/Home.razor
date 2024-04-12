@@ -1,7 +1,74 @@
-﻿@page "/"
+﻿<!-- Filename: Home.razor -->
+@page "/"
+@inject NavigationManager NavigationManager
+@using System.Diagnostics
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+<h3>Elevator Control</h3>
 
-<h1>Hello, world!</h1>
+<div>
+    <button @onclick="() => CallElevator(1)">Call to 1st Floor</button>
+    <button @onclick="() => CallElevator(5)">Call to 5th Floor</button>
+</div>
 
-Welcome to your new app.
+<div>
+    <div>
+        <button @onclick="() => CallElevator(2, Direction.Up)">Go to 2nd Floor (Up)</button>
+        <button @onclick="() => CallElevator(2, Direction.Down)">Go to 2nd Floor (Down)</button>
+    </div>
+    <div>
+        <button @onclick="() => CallElevator(3, Direction.Up)">Go to 3rd Floor (Up)</button>
+        <button @onclick="() => CallElevator(3, Direction.Down)">Go to 3rd Floor (Down)</button>
+    </div>
+    <div>
+        <button @onclick="() => CallElevator(4, Direction.Up)">Go to 4th Floor (Up)</button>
+        <button @onclick="() => CallElevator(4, Direction.Down)">Go to 4th Floor (Down)</button>
+    </div>
+</div>
+
+<div>
+    <p>Elevator State: @elevatorState</p>
+</div>
+
+@code {
+    public string elevatorState = "Idle";
+
+    public void CallElevator(int floor)
+    {
+        // Update elevator state
+        elevatorState = $"Called elevator to floor {floor}";
+
+        //Called elevator to floor 3 (Up)
+
+        // Trigger UI update
+        //StateHasChanged();
+
+        // Logic to call the elevator to a specific floor
+        Console.WriteLine(elevatorState);
+        Debug.WriteLine(elevatorState);
+    }
+
+    public void CallElevator(int floor, Direction direction)
+    {
+        // Update elevator state
+        elevatorState = $"Called elevator to floor {floor} ({direction})";
+
+        // Trigger UI update
+        //StateHasChanged();
+
+        // Logic to call the elevator to a specific floor and direction
+        Console.WriteLine(elevatorState);
+        Debug.WriteLine(elevatorState);
+    }
+
+    public void RefreshPage()
+    {
+        NavigationManager.NavigateTo("Refresh");
+    }
+
+    public enum Direction
+    {
+        Up,
+        Down
+    }
+}

@@ -6,4 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Components\Pages\Home - Copy.razor.txt" />
+    <None Remove="Components\Pages\Refresh.razor.01.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ElevatorV01.sln" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="bunit" Version="1.27.17" />
+  </ItemGroup>
+
 </Project>
